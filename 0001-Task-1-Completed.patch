@@ -1,0 +1,73 @@
+From b77fa385810dc6f4debf02fdb47ee608761667e9 Mon Sep 17 00:00:00 2001
+From: Nupoor Kale <nupoor8741@gmail.com>
+Date: Mon, 15 Jan 2024 20:14:33 +0530
+Subject: [PATCH] Task 1 Completed
+
+---
+ __pycache__/client3.cpython-311.pyc | Bin 1791 -> 1896 bytes
+ client_test.py                      |   8 +++++---
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/__pycache__/client3.cpython-311.pyc b/__pycache__/client3.cpython-311.pyc
+index 50c785bf4d6cc097424a22a37dcd873dd29aa57b..06c765ac36c9ba438e10618055d154ecf5c60fcd 100644
+GIT binary patch
+delta 601
+zcmY+B&ubGw6vyA}&Tf*;?uI7W#ErGxQbD5lBNP=OtqQ5)!GP^Sx+taXjuKQ_X6wPQ
+zY7vAKL^jMp@dpTE{n3M-v<LBTXv9MZ9z5Dxq$j=T+XMv%zMq|W@6G!@c77Y*P2;6u
+zXn^b1_zU*2Y1rgbb59xJ70G(@{>JSZxM?;}fr|&-j08+&nKc5ij_R)q6u`~8mYZ|)
+zEYH#`TgC)d?(kwP`<QrfW+4+ShtyaenS7e~zXySPhk7@3WDL9H*Cg~nf%rfQ<c;`D
+zs^p0nk?sx#avj5-QcnWhqyY(}Ko007It@ityq9K_t=_eiJV6#jRX(qoSni;FSG<)^
+z=teHQ(K4K8BQ1SY{E$cYN98hVdkFCW5)crNT#2H<B~O}$03(qbI>=%l-95{rWc4)^
+zrA};#*B039+~3W-ALSf}8~EwOFSF&Tx#ij-&*E_}%HM@pfp4_jj+r63Q(vjK<7Pu`
+zC)454)#IDAz*FK8JxOfwm6nJpOy!*2QF|^vj~<HS{|1iZ0N2HmVhyFDZDjW=UcR>I
+zUBAjEcoC1$3;FZnxpF$CkeyxlhqU;qII5<MbwLxu>X{=0863dE5;@_KJ{yzm()hc<
+w4c01EzLY90{Xk<fJod2m%4!#e8>hm<t7k>1&g5*Mg-zM+(tbN-j7Q`A0h3OS<^TWy
+
+delta 502
+zcmaFC_n(({IWI340}$*qUYhDMkyny&!$fr(#_bbRG#Qsn?Awu%D(J!xs}&{0#E{CC
+zDzuD|fnhZeLqH4*14EQ>lt`3llo(K6JcT_~cs64SN2&;r<V+O>l3b}`K$3edC#p_H
+zh8}IO4jv%Mo+_3qHhB-DGUMXO4;cLzCrs97Y89wusbQ>Ps$s5SNn;6S&}5x_fhlsb
+z9<v>z^W<FSa4ue;6BK~BIAHQQW(Ou7(aBOQ%HklWF$3{u4j?g|fs-MH5vZ4Gau$n<
+z_e+rEN+9nRdqGiVa%y}cjFD8#1e8)xDB=N9w>Z*MOM((hGV_Z>fLtvgE(V2A1H%Ir
+zn;YCb9fn1Gli#v9GD=L=XEkKxot(%T=u*T9R8a&B4u&F-+9GZc!3HF5u>$SND=88L
+z3GjgkkR87`Y;yBcN^?@}iZp;+ki&{YCjVn~=VxZ*{lEYx_$G(2DX?*{8h>Emm|Vr?
+zsUa%;fq{uLg%Lt_xZW_d-5|3g^`fE66+@ScJbE3j6D((Bt`MF4lPywAlz~O+0<+`?
+M7Kj0?#$X2k069-|B>(^b
+
+diff --git a/client_test.py b/client_test.py
+index af2bf26..7f3b576 100644
+--- a/client_test.py
++++ b/client_test.py
+@@ -1,5 +1,5 @@
+ import unittest
+-from client3 import getDataPoint
++from client3 import getDataPoint,getRatio
+ 
+ class ClientTest(unittest.TestCase):
+   def test_getDataPoint_calculatePrice(self):
+@@ -8,6 +8,8 @@ class ClientTest(unittest.TestCase):
+       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
+     ]
+     """ ------------ Add the assertion below ------------ """
++    for quote in quotes:
++      self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price'] + quote['top_ask']['price'])/2))
+ 
+   def test_getDataPoint_calculatePriceBidGreaterThanAsk(self):
+     quotes = [
+@@ -15,11 +17,11 @@ class ClientTest(unittest.TestCase):
+       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
+     ]
+     """ ------------ Add the assertion below ------------ """
+-
++    for quote in quotes:
++      self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price'] + quote['top_ask']['price'])/2))
+ 
+   """ ------------ Add more unit tests ------------ """
+ 
+ 
+-
+ if __name__ == '__main__':
+     unittest.main()
+-- 
+2.43.0.windows.1
+
